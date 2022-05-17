@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+const usersRoutes = require("./routes/usersRoutes");
 
 const app = express();
 
@@ -11,6 +12,12 @@ app.use((req, res, next) => {
     next();
   });
 
+app.get("/", (req, res) =>{
+  res.send("hello !")
+});
+
 app.use(bodyParser.json);
+
+app.use("/api/auth", usersRoutes);
 
 module.exports = app;
