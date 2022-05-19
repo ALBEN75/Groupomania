@@ -1,8 +1,8 @@
 const { Model } = require('sequelize')
 
 module.exports = (sequelize, DataTypes) => {
-    class UserModel extends Model {}
-    UserModel.init({
+    class User extends Model {}
+    User.init({
         id: {
 			allowNull: false,
 			autoIncrement: true,
@@ -49,8 +49,8 @@ module.exports = (sequelize, DataTypes) => {
     {
         //indique a squelize le nom de la table
         sequelize,
-        modelName: "UserModel"
+        modelName: "User"
     })
-    return UserModel
+    return User
     
-}
+};
