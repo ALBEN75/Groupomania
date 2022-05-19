@@ -1,8 +1,9 @@
 const express = require('express');
-const bodyParser = require('body-parser');
 const path = require('path');
 
 const usersRoutes = require("./routes/usersRoutes");
+
+const db = require('./models/index');
 
 const app = express();
 
@@ -13,7 +14,9 @@ app.use((req, res, next) => {
     next();
   });
 
-app.use(bodyParser.json());
+app.use(express.json());
+
+db.connexion.sync();
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
