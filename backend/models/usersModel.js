@@ -16,6 +16,20 @@ module.exports = (sequelize, DataTypes) => {
 				is:/^[a-zA-ZÀ-ÿ\s_-]{2,60}$/
 			}
 		},
+		lastname: {
+			allowNull: false,
+			type: DataTypes.STRING,
+			validate: {
+				is:/^[a-zA-ZÀ-ÿ\s_-]{2,60}$/
+			}
+		},
+		firstname: {
+			allowNull: false,
+			type: DataTypes.STRING,
+			validate: {
+				is:/^[a-zA-ZÀ-ÿ\s_-]{2,60}$/
+			}
+		},
 		email: {
 			allowNull: false,
 			unique : true,
@@ -45,7 +59,7 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: false,
 			type: DataTypes.DATE
 		}
-    }, 
+	}, 
     {
         //indique a squelize le nom de la table
         sequelize,
