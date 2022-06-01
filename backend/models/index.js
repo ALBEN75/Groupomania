@@ -24,6 +24,13 @@ const db = {};
 db.Sequelize = Sequelize;
 db.connexion = connexion;
 db.user = require('./usersModel')(connexion, Sequelize);
+db.post = require('./postModel')(connexion, Sequelize);
+db.comment = require('./commentModel')(connexion, Sequelize);
 
+Object.keys(db).forEach(model => {
+  if ( db[model].associate ) {
+    db[model].associate(db);
+  } 
+});
 
 module.exports = db;
