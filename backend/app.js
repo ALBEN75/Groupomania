@@ -2,7 +2,7 @@ const express = require('express');
 const path = require('path');
 
 const usersRoutes = require('./routes/usersRoutes');
-const logsRoutes = require('./routes/logsRoutes');
+const postsRoutes = require('./routes/postsRoutes');
 
 const db = require('./models/index');
 
@@ -22,6 +22,6 @@ db.connexion.sync();
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
 app.use('/api/auth', usersRoutes);
-app.use('/api/logs', logsRoutes);
+app.use('/api/posts', postsRoutes);
 
 module.exports = app;
