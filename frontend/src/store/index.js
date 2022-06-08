@@ -23,6 +23,8 @@ if (!user) {
   }
 }
 
+let post = localStorage.getItem('post');
+
 const store = createStore({
   state: {
     status: '',
@@ -34,6 +36,11 @@ const store = createStore({
       job: '',
       email:''
     },
+    post: post,
+    posts: {
+      content: '',
+      file:''
+    }
   },
   getters: {
   },
@@ -56,6 +63,9 @@ const store = createStore({
       }
       localStorage.removeItem('user');
       localStorage.removeItem('token');
+    },
+    posts: function (state, posts) {
+      state.posts = posts;
     }
   },
   actions: {
@@ -85,6 +95,21 @@ const store = createStore({
         .catch(function (error) {
           commit('setStatus', 'error_login');
           reject(error);
+        });
+      });
+    },
+    createPost: ({commit}, posts) => {
+      return new Promise((resolve, reject) => {
+        commit;
+        instance.post('/post', posts)
+        .then(function (response) {
+          commit;
+          resolve(response);
+        })
+        .catch(function (error) {
+          commit;
+          reject(error);
+          console.log('error');
         });
       });
     }
