@@ -6,10 +6,10 @@ const auth = require('../middlewares/auth');
 const multer = require('../middlewares/multerConfig');
 
 router.post('/', multer, postCtrl.createPost);
-router.get('/:id', auth, postCtrl.getOnePost);
-router.get('/', auth, postCtrl.getAllPosts);
+router.get('/:id', postCtrl.getOnePost);
+router.get('/', postCtrl.getAllPosts);
 router.put('/:id', auth, multer, postCtrl.modifyPost);
-router.delete('/:id', auth, postCtrl.deletePost);
-router.post('/:id/like', auth, postCtrl.likeOrDislikePost);
+router.delete('/:id', postCtrl.deletePost);
+
 
 module.exports = router; 
