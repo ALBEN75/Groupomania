@@ -7,6 +7,7 @@ module.exports = (sequelize, DataTypes) => {
             models.post.belongsTo(models.user, { 
                 onDelete: "CASCADE"
             })
+			models.post.hasMany(models.comment)
         }
     }
     Post.init({
