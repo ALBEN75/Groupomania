@@ -34,6 +34,7 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'Login',
+  
   data: function () {
     return {
       mode: 'login',
@@ -107,17 +108,20 @@ nav a:hover {
   text-align: center;
   width: 50%;
   margin:auto;
-  background-color: #fa8072;
+  background: linear-gradient(#fe2712, #fa8072);
   border-radius: 25px;
   box-shadow: 0px 0px 25px 0px #fe2712;
   opacity: 0.96;
 }
 p a {
   text-decoration: none;
+  font-weight: bold;
+  color: #0042FF;
 }
 p a:hover {
-  color: #fe2712;
+  color: #0042FF;
   font-weight: bold;
+  text-decoration: underline;
 }
 .form {
   display: flex;
