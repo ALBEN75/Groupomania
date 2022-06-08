@@ -1,6 +1,9 @@
 const db = require('../models/index');
+const User = db.user;
 const Post = db.post;
+const Comment = db.comment;
 const fs = require('fs');
+const { comment } = require('../models/index');
 
 exports.createPost = (req, res) => {
     console.log('create');
@@ -9,7 +12,7 @@ exports.createPost = (req, res) => {
         file: req.body.file
     })
     .then(post =>{
-        res.send({
+        res.status(200).send({
             message : "Publication enregistré avec succés"
         })
     })
@@ -17,17 +20,17 @@ exports.createPost = (req, res) => {
 };
 
 exports.getOnePost = (req, res) => {
-    Post.findOne({ id: req.body.id })
-    .then(post => {
-        res.send({
-            message: "Post récupérer avec succés !"
-        })
-    })
+    Post.findOne({ where:{ id: req.params.id } })
+    .then(post => res.status(200).json(post))
     .catch(error => {res.status(400).send(error.message)}); 
 };
 
 exports.getAllPosts = (req, res) => {
-    Post.findAll()
+    Post.findAll({ 
+        include:[ User, { 
+            model: Comment, include: User
+        }]
+    })
     .then(posts => res.status(200).json(posts))
     .catch(error => {res.status(400).send(error.message)});
 };
@@ -41,19 +44,16 @@ exports.modifyPost = (req, res) => {
 };
 
 exports.deletePost = (req, res) => {
-    Post.findOne({ PostId: req.body.PostId })
+    Post.findOne({ where:{ id: req.params.id } })
     .then(post => {
-        const filename = post.file.split('/images/')[1];
-        fs.unlink(`images/${filename}`, () => {
-            Post.deleteOne({ PostId: req.body.PostId })
-            res.send({
-                message: "Supression effectuée avec succés !"
-            })
+        /*const filename = post.file.split('/images/')[1];*/
+        //fs.unlink(`images/${filename}`, () => {
+            Post.destroy({ where:{ id: req.params.id } })
+            .then(() =>
+                res.send({
+                    message: "Supression effectuée avec succés !"
+                }))
             .catch(error => {res.status(400).send(error.message)});
-        });
+        //});
     })
-};
-
-exports.likeOrDislikePost = (req, res) => {
-
 };
