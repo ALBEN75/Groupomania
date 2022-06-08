@@ -13,7 +13,7 @@ body{
 }
 #app{
   font-family: Helvetica, Arial, sans-serif;
-  color: #2c3e50;
+  color: black;
   text-align: center;
 }
 </style>
