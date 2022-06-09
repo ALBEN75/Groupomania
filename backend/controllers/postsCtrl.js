@@ -6,10 +6,10 @@ const fs = require('fs');
 const { comment } = require('../models/index');
 
 exports.createPost = (req, res) => {
+    console.log('create');
     Post.create({
         content: req.body.content,
-        file: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
-        UserId: req.body.UserId,
+        file: req.body.file
     })
     .then(post =>{
         res.status(200).send({
