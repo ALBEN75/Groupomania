@@ -75,13 +75,13 @@ export default {
             posts: []
         }
     },
-    created: {
+    /*created: {
         displayPost: function() {
             axios('localhost:3000/api/posts')
             this.posts = data.post;
             return ;  
         }
-    },
+    },*/
     mounted: function () {
         if (this.$store.state.user.userId == -1) {
             this.$router.push('/login');
