@@ -237,11 +237,9 @@
 
 <script>
 import { mapState } from 'vuex'
-
 export default {
     name: 'Forum',
     name: "Forum",
-
   data: function () {
     return {
       mode: "forum",
@@ -253,7 +251,6 @@ export default {
       posts: [],
     };
   },
-
   mounted: function () {
     if (this.$store.state.user.userId == -1) {
       this.$router.push("/login");
@@ -283,26 +280,11 @@ export default {
     onFileUpload (event) {
       this.file = event.target.files[0]
     },
-<<<<<<< HEAD
-    /*created: {
-        displayPost: function() {
-            axios('localhost:3000/api/posts')
-            this.posts = data.post;
-            return ;  
-        }
-    },*/
-    mounted: function () {
-        if (this.$store.state.user.userId == -1) {
-            this.$router.push('/login');
-            return ;
-        }
-=======
      clickCreatePost: function () {
       this.adPost = true;
     },
     cancelCreate: function () {
       this.adPost = false;
->>>>>>> df42e91500affbcf3864356ad46c3bc8d2e8156d
     },
     clickUpdatePost: function () {
       this.modifyPost = true;
