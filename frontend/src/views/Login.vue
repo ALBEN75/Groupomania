@@ -2,7 +2,7 @@
   <div id="header">
   <router-link to="/"><img alt="Header Logo" src="../assets/header.png"></router-link>
   <nav>
-    <router-link to="/signup">Inscription</router-link> |
+    <router-link to="/signup">Inscription</router-link>
     <router-link to="/login">Connexion</router-link>
   </nav>
   <router-view/>
