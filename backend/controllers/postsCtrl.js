@@ -9,7 +9,8 @@ exports.createPost = (req, res) => {
     console.log('create');
     Post.create({
         content: req.body.content,
-        file: req.body.file
+        file: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+        UserId: req.body.UserId,
     })
     .then(post =>{
         res.status(200).send({
