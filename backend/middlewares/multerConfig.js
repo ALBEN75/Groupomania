@@ -7,7 +7,6 @@ const MIME_TYPES = {
 	"image/png" : "png",
 	"image/gif":"gif"
 };
-console.log(MIME_TYPES)
 const storage = multer.diskStorage({
 	//destination de stockage du fichier
 	destination : (req, file, callback) => {
