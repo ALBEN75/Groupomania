@@ -108,7 +108,7 @@ export default {
             this.updateEmail = true;
         },
         updateProfile: function (user) {
-        const formData = new FormData()
+        /*const formData = new FormData()
         formData.append('username', this.$store.state.user.username);
         formData.append('lastname', this.$store.state.user.lastname);
         formData.append('firstname', this.$store.state.user.firstname);
@@ -127,7 +127,7 @@ export default {
             alert("Modification enregistrée avec succée !")
             location.reload('/profile');
           })
-          .catch((error) => console.log("l'erreur est ici=======", error));
+          .catch((error) => console.log("l'erreur est ici=======", error));*/
         }
     }
 }
