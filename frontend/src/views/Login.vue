@@ -2,7 +2,7 @@
   <div id="header">
   <router-link to="/"><img alt="Header Logo" src="../assets/header.png"></router-link>
   <nav>
-    <router-link to="/signup">Inscription</router-link>
+    <router-link to="/signup">Inscription</router-link> |
     <router-link to="/login">Connexion</router-link>
   </nav>
   <router-view/>
@@ -71,12 +71,13 @@ export default {
           username: response.data.user.username,
           lastname: response.data.user.lastname,
           firstname: response.data.user.firstname,
+          is_admin: response.data.user.is_admin,
           job: response.data.user.job,
           email: response.data.user.email,
           password: response.data.user.password
         }
         localStorage.setItem("user", JSON.stringify(user));
-        router.push('/forum');
+        location.reload();
       })
       .catch(function (error) {
         console.log(error);
@@ -97,10 +98,10 @@ img {
 }
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #4E5166;
 }
 nav a:hover {
-  color: #fe2712;
+  color: #FD2D01;
 }
 .card {
   display: flex;
@@ -108,18 +109,19 @@ nav a:hover {
   text-align: center;
   width: 50%;
   margin:auto;
-  background: linear-gradient(#fe2712, #fa8072);
+  background: linear-gradient(#FD2D01, #FFD7D7);
+  border: 2px solid #4E5166;
   border-radius: 25px;
-  box-shadow: 0px 0px 25px 0px #fe2712;
+  box-shadow: 0px 0px 25px 0px #FD2D01;
   opacity: 0.96;
 }
 p a {
   text-decoration: none;
   font-weight: bold;
-  color: #0042FF;
+  color: #001bff;
 }
 p a:hover {
-  color: #0042FF;
+  color: #001bff;
   font-weight: bold;
   text-decoration: underline;
 }
@@ -134,8 +136,8 @@ p a:hover {
   width: 90%;
   border: ;
   border-radius: 20px;
-  border-color: #fe2712;
-  background: #2c3e50;
+  border-color: #FD2D01;
+  background: #4E5166;
   font-size: 16px;
   color: white;  
   text-overflow: ellipsis;
@@ -148,25 +150,25 @@ p a:hover {
   color: red;
 }
 .button {
-  background: #2c3e50;
+  background: #4E5166;
   font-size: 16px;
   font-weight: bold;
-  color: #fe2712;
+  color: #FD2D01;
   padding: 2% 5%;
-  border-color: #fe2712;
+  border-color: #FD2D01;
   border-radius: 20px;
   cursor: pointer;
 }
 .button:hover{
-  background: #fe2712;
-  box-shadow: 0px 0px 50px 0px #fe2712;
-  color: #2c3e50;
+  background: #FD2D01;
+  box-shadow: 0px 0px 50px 0px #FD2D01;
+  color: #4E5166;
   font-weight: bold;
-  border-color: #2c3e50;
+  border-color: #4E5166;
 }
 .button--disabled {
     background: #cecece;
-    color: #2c3e50;
+    color: #4E5166;
     border: none;
   }
 .button--disabled:hover {
