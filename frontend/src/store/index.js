@@ -41,7 +41,6 @@ const store = createStore({
       content: '',
       file:''
     },
-    /*comment: comment,*/
     comments: {
       contentComment: '',
       fileComment: ''
@@ -54,6 +53,12 @@ const store = createStore({
       state.status = status;
     },
     loginUser: function (state, user) {
+      instance.defaults.headers.common['Authorization'] = user.token;
+      localStorage.setItem('user', JSON.stringify(user));
+      state.user = user;
+      console.log(state);
+    },
+    refreshUser: function () {
       instance.defaults.headers.common['Authorization'] = user.token;
       localStorage.setItem('user', JSON.stringify(user));
       state.user = user;
