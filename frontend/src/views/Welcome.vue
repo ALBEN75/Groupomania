@@ -29,10 +29,10 @@ img{
 }
 nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #4E5166;
 }
 nav a:hover {
-  color: #fe2712;
+  color: #FD2D01;
 }
 h1{
   margin: 90px 0;
