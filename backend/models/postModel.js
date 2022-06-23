@@ -8,6 +8,7 @@ module.exports = (sequelize, DataTypes) => {
                 onDelete: "CASCADE"
             })
 			models.post.hasMany(models.comment)
+			models.post.hasMany(models.like)
         }
     }
     Post.init({
