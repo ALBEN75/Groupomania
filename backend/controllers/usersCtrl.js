@@ -21,7 +21,7 @@ exports.signup = (req, res) => {
 };
 
 exports.login = (req, res) => {
-    User.findOne({ email: req.body.email })
+    User.findOne({ where:{email: req.body.email} })
     .then(user => {
         bcrypt.compare(req.body.password, user.password)
         .then(verifiedPassword =>{
