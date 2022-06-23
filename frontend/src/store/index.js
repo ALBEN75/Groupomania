@@ -58,11 +58,6 @@ const store = createStore({
       state.user = user;
       console.log(state);
     },
-    refreshUser: function () {
-      instance.defaults.headers.common['Authorization'] = user.token;
-      localStorage.setItem('user', JSON.stringify(user));
-      state.user = user;
-    },
     users: function (state, users) {
       state.users = users;
     },
