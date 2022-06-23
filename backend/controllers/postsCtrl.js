@@ -2,14 +2,18 @@ const db = require('../models/index');
 const User = db.user;
 const Post = db.post;
 const Comment = db.comment;
-const fs = require('fs');
-const { comment } = require('../models/index');
+const Like = db.like;
 
 exports.createPost = (req, res) => {
     console.log('create');
+    console.log(req.body);
+    let fileName = "";
+    if (req.file) {
+        fileName= `${req.protocol}://${req.get("host")}/images/${req.file.filename}`;
+    }
     Post.create({
         content: req.body.content,
-        file: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`,
+        file: fileName,
         UserId: req.body.UserId,
     })
     .then(post =>{
@@ -28,33 +32,44 @@ exports.getOnePost = (req, res) => {
 
 exports.getAllPosts = (req, res) => {
     Post.findAll({ 
-        include:[ User, { 
-            model: Comment, include: User
-        }]
+        include:[ User, 
+            {model: Comment, include: User},
+            {model: Like, include: User}
+        ],
+        order: [
+            ["updatedAt", "DESC"]
+        ]
+    
     })
     .then(posts => res.status(200).json(posts))
     .catch(error => {res.status(400).send(error.message)});
 };
 
 exports.modifyPost = (req, res) => {
-    Post.findOne({ PostId: req.body.PostId }, { UserId: req.body.UserId } )
-
-    Post.update({ PostId: req.body.PostId })
-    .then(posts => res.status(200).json(posts))
+    let data ;
+    if (req.file) {
+        data = { 
+            content: req.body.content,
+            file: `${req.protocol}://${req.get("host")}/images/${req.file.filename}`
+        }
+    } else {
+        data = {
+            content: req.body.content
+        }
+    }
+    Post.update({...data}, {where: {id:req.params.id}})
+    .then(()=> {res.send("Modification enregistrée avec succée !")})
     .catch(error => {res.status(400).send(error.message)});
 };
 
 exports.deletePost = (req, res) => {
     Post.findOne({ where:{ id: req.params.id } })
     .then(post => {
-        /*const filename = post.file.split('/images/')[1];*/
-        //fs.unlink(`images/${filename}`, () => {
             Post.destroy({ where:{ id: req.params.id } })
             .then(() =>
                 res.send({
                     message: "Supression effectuée avec succés !"
                 }))
             .catch(error => {res.status(400).send(error.message)});
-        //});
     })
 };
