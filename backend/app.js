@@ -1,5 +1,7 @@
 const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
+const nocache = require('nocache');
 
 const usersRoutes = require('./routes/usersRoutes');
 const postsRoutes = require('./routes/postsRoutes');
@@ -23,9 +25,13 @@ db.connexion.sync();
 
 app.use('/images', express.static(path.join(__dirname, 'images')));
 
+app.use(helmet());
+
 app.use('/api/auth', usersRoutes);
 app.use('/api/posts', postsRoutes);
 app.use('/api/comments', commentsRoutes);
 app.use('/api/like', likesRoutes);
+
+app.use(nocache());
 
 module.exports = app;
