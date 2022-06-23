@@ -3,7 +3,6 @@
 </template>
 
 <script>
-
 </script>
 
 <style>
@@ -12,7 +11,7 @@ body{
   background-size: contain;
 }
 #app{
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: 'Lato', Helvetica, Arial, sans-serif;
   color: black;
   text-align: center;
 }
