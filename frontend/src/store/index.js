@@ -40,6 +40,11 @@ const store = createStore({
     posts: {
       content: '',
       file:''
+    },
+    /*comment: comment,*/
+    comments: {
+      contentComment: '',
+      fileComment: ''
     }
   },
   getters: {
@@ -66,6 +71,9 @@ const store = createStore({
     },
     posts: function (state, posts) {
       state.posts = posts;
+    },
+    comments: function (state, comments) {
+      state.comments = comments;
     }
   },
   actions: {
@@ -98,21 +106,6 @@ const store = createStore({
         });
       });
     },
-    createPost: ({commit}, posts) => {
-      return new Promise((resolve, reject) => {
-        commit;
-        instance.post('/post', posts)
-        .then(function (response) {
-          commit;
-          resolve(response);
-        })
-        .catch(function (error) {
-          commit;
-          reject(error);
-          console.log('error');
-        });
-      });
-    }
   }
 })
 
