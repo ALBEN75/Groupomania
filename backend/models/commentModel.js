@@ -23,10 +23,6 @@ module.exports = (sequelize, DataTypes) => {
 			allowNull: true,
 			type: DataTypes.TEXT
 		},
-		fileComment: {
-			allowNull: true,
-			type: DataTypes.STRING
-		},
 		createdAt: {
 			allowNull: false,
 			type: DataTypes.DATE
