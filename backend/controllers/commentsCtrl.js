@@ -8,7 +8,6 @@ exports.createComment = (req, res) => {
     //console.log('create');
     Comment.create({
         contentComment: req.body.contentComment,
-        fileComment: req.body.fileComment,
         UserId: req.body.UserId,
         PostId: req.body.PostId
     })
@@ -23,14 +22,11 @@ exports.createComment = (req, res) => {
 exports.deleteComment = (req, res) => {
     Comment.findOne({ where:{ id: req.params.id } })
     .then(post => {
-        /*const filename = post.file.split('/images/')[1];*/
-        //fs.unlink(`images/${filename}`, () => {
-            Post.destroy({ where:{ id: req.params.id } })
+            Comment.destroy({ where:{ id: req.params.id } })
             .then(() =>
                 res.send({
                     message: "Supression effectuée avec succés !"
                 }))
             .catch(error => {res.status(400).send(error.message)});
-        //});
     })
 };
