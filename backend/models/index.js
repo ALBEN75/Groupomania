@@ -26,6 +26,7 @@ db.connexion = connexion;
 db.user = require('./usersModel')(connexion, Sequelize);
 db.post = require('./postModel')(connexion, Sequelize);
 db.comment = require('./commentModel')(connexion, Sequelize);
+db.like = require('./likeModel')(connexion, Sequelize);
 
 Object.keys(db).forEach(model => {
   if ( db[model].associate ) {
