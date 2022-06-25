@@ -1,8 +1,6 @@
 const db = require('../models/index');
-const User = db.user;
-const Post = db.post;
 const Comment = db.comment;
-const fs = require('fs');
+
 
 exports.createComment = (req, res) => {
     //console.log('create');
