@@ -2,6 +2,7 @@ const db = require('../models/index');
 const User = db.user;
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 exports.signup = (req, res) => {
     User.create({
