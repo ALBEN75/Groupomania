@@ -109,7 +109,7 @@
                         </span>
                       </div>
                     <div>
-                      <div class="updatePost" v-if="post.User.id == $store.state.user.id || $store.state.user.is_admin == true">
+                      <div class="updatePost d-flex flex-nowrap" v-if="post.User.id == $store.state.user.id || $store.state.user.is_admin == true">
                         <button class="btn btn-warning mr-2" @click="editPost(post)"><i class="fa fa-edit"></i></button>
                         <button class="btn btn-danger" @click="deletePost(post)"><i class="fa fa-trash"></i></button>
                       </div>
